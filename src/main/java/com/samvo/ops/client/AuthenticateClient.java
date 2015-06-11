@@ -19,7 +19,7 @@ import com.samvo.ops.client.model.token.SessionToken;
 import com.samvo.ops.client.model.user.UserCredential;
 
 /**
- * @author Phil
+ * @author Phil Merrilees
  * 9 Jun 2015
  * Description -
  */
