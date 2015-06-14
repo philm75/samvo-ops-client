@@ -4,6 +4,7 @@ import java.util.Set;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Component;
+import org.springframework.web.client.RestClientException;
 
 import com.samvo.ops.client.model.feed.Matches;
 
@@ -26,13 +27,21 @@ public class InRunningMarketRestClient extends AbstractMarketRestClient implemen
 	private static final String IR_BY_MATCH_IDS_URL = "https://%s/OPS/IRData?sessiontoken=%s&matchId=%s";
 	
 	@Override
-	public Matches getMarketFeedData(String sessionToken) {
-		return restTemplate.getForObject(String.format(IR_URL, host, sessionToken), Matches.class);
+	public Matches getMarketFeedData(String sessionToken) throws InvalidSessionTokenException {
+		try {
+			return restTemplate.getForObject(String.format(IR_URL, host, sessionToken), Matches.class);
+		} catch (RestClientException e) {
+			throw new InvalidSessionTokenException();
+		}
 	}
 
 	@Override
-	public Matches getMarketFeedData(String sessionToken, Set<String> matchIds) {
-		return restTemplate.getForObject(String.format(IR_BY_MATCH_IDS_URL, host, sessionToken, toDelimitedStrings(matchIds)), Matches.class);
+	public Matches getMarketFeedData(String sessionToken, Set<String> matchIds) throws InvalidSessionTokenException {
+		try {
+			return restTemplate.getForObject(String.format(IR_BY_MATCH_IDS_URL, host, sessionToken, toDelimitedStrings(matchIds)), Matches.class);
+		} catch (RestClientException e) {
+			throw new InvalidSessionTokenException();
+		}			
 	}
 
 	@Override

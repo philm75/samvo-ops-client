@@ -33,13 +33,13 @@ public class InRunningMarketRestClientTest extends BaseRestClientTest {
 	}
 	
 	@Test
-	public void testGetMarketFeedData() {		
+	public void testGetMarketFeedData() throws InvalidSessionTokenException {		
 		Matches matches = inRunningMarketRestClient.getMarketFeedData(token);
 		assertTrue(matches.getMatches().size() > 0);
 	}
 	
 	@Test
-	public void testGetMarketFeedDataByMatchIds() {
+	public void testGetMarketFeedDataByMatchIds() throws InvalidSessionTokenException {
 		Matches matches = inRunningMarketRestClient.getMarketFeedData(token);
 		Set<String> matchIds = new HashSet<String>();
 		matchIds.add(matches.getMatches().get(0).getMatchId().toString());

@@ -18,8 +18,9 @@ public interface MarketRestClient {
 	 * 
 	 * @param sessionToken
 	 * @return Matches
+	 * @throws InvalidSessionTokenException
 	 */
-	Matches getMarketFeedData(String sessionToken);
+	Matches getMarketFeedData(String sessionToken) throws InvalidSessionTokenException;
 	
 	/**
 	 * Get market feed data for a set of match IDs.
@@ -27,8 +28,9 @@ public interface MarketRestClient {
 	 * @param sessionToken
 	 * @param matchIds
 	 * @return Matches
+	 * @throws InvalidSessionTokenException
 	 */
-	Matches getMarketFeedData(String sessionToken, Set<String> matchIds);
+	Matches getMarketFeedData(String sessionToken, Set<String> matchIds) throws InvalidSessionTokenException;
 	
 	/**
 	 * Get market feed data in XML.
