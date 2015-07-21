@@ -21,7 +21,7 @@ import com.samvo.ops.client.model.user.UserCredential;
 /**
  * @author Phil Merrilees
  * 9 Jun 2015
- * Description -
+ * Description -Authentication Client.
  */
 @Component("authenticateClient")
 public class AuthenticateClient {

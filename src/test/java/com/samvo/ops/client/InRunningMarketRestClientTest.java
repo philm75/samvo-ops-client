@@ -1,15 +1,12 @@
 package com.samvo.ops.client;
 
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
-
-import java.util.HashSet;
-import java.util.Set;
 
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.samvo.ops.client.model.feed.Match;
 import com.samvo.ops.client.model.feed.Matches;
 
 /**
@@ -36,16 +33,28 @@ public class InRunningMarketRestClientTest extends BaseRestClientTest {
 	public void testGetMarketFeedData() throws InvalidSessionTokenException {		
 		Matches matches = inRunningMarketRestClient.getMarketFeedData(token);
 		assertTrue(matches.getMatches().size() > 0);
+		
+		for (Match match: matches.getMatches()) {
+			if (match.getMatchId().intValue() == 1019391|| match.getMatchId().intValue() == 1020661 || match.getMatchId().intValue() == 1022521) {
+				System.out.println("match=" + match.toString());
+			}
+		}
 	}
 	
-	@Test
-	public void testGetMarketFeedDataByMatchIds() throws InvalidSessionTokenException {
-		Matches matches = inRunningMarketRestClient.getMarketFeedData(token);
-		Set<String> matchIds = new HashSet<String>();
-		matchIds.add(matches.getMatches().get(0).getMatchId().toString());
-		
-		matches.getMatches().clear();
-		matches = inRunningMarketRestClient.getMarketFeedData(token, matchIds);
-		assertEquals(1, matches.getMatches().size());
-	}	
+//	@Test
+//	public void testGetMarketFeedDataByMatchIds() throws InvalidSessionTokenException {
+//		Matches matches = inRunningMarketRestClient.getMarketFeedData(token);
+//		Set<String> matchIds = new HashSet<String>();
+//		matchIds.add("1019391");
+//		matchIds.add("1020661");
+//		matchIds.add("1022521");
+//		
+//		matches.getMatches().clear();
+//		matches = inRunningMarketRestClient.getMarketFeedData(token, matchIds);
+//		assertEquals(1, matches.getMatches().size());
+//		System.out.println(matches.getMatches().get(0).toString());
+//		System.out.println(matches.getMatches().get(1).toString());
+//		System.out.println(matches.getMatches().get(2).toString());
+//		
+//	}	
 }

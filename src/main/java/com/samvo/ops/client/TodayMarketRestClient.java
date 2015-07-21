@@ -32,7 +32,7 @@ public class TodayMarketRestClient extends AbstractMarketRestClient implements M
 			return restTemplate.getForObject(String.format(TD_URL, host, sessionToken), Matches.class);
 		} catch (RestClientException e) {
 			throw new InvalidSessionTokenException();
-		}			
+		}		
 	}
 
 	@Override
